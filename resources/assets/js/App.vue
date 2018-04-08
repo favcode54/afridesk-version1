@@ -7,7 +7,8 @@
             </div>
             <ul class="navbar__list">
                 <li class="navbar__item" v-if="auth">
-                    {{ username }}
+                    <router-link to="/profile">{{ username }}</router-link>
+                    
                     <span class="caret"></span>
                 </li>
                 <li class="navbar__item" v-if="auth">

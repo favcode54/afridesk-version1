@@ -26,7 +26,8 @@ class AuthController extends Controller
         $user->save();
         return response()
             ->json([
-                'registered' => true
+                'registered' => true,
+                'username' => $request->first_name.' '.$request->last_name
             ]);
     }
     public function login(Request $request)
@@ -46,7 +47,7 @@ class AuthController extends Controller
                     'authenticated' => true,
                     'api_token' => $user->api_token,
                     'user_id' => $user->id,
-                    'username' => $user->last_name
+                    'username' => $user->first_name.' '.$user->last_name
                 ]);
         }
         return response()
