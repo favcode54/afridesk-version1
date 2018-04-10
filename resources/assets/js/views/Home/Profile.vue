@@ -23,7 +23,7 @@
 					<!-- <small class="error__control" v-if="error.image">{{error.image[0]}}</small> -->
 				</div>
 			</div>
-      <button class="btn btn__primary" @click="save" :disabled="isProcessing">Save</button>
+      <!-- <button class="btn btn__primary" @click="save(mode1)" :disabled="isProcessing">Save</button> -->
 </div>
    
 	</div>
@@ -41,6 +41,7 @@ export default {
 		},
   data() {
     return {
+      mode1:'upload',
       showeditmodal: false,
       checkauth: false,
       authState: Auth.state,
@@ -74,7 +75,24 @@ export default {
     checkauth1() {
       this.$router.push("/");
       console.log("call redirect");
-    }
+    },
+    save(mode) {
+				const form = toMulipartedForm(this.form, mode) 
+				post(this.storeURL, form)
+				    .then((res) => {
+				        if(res.data.saved) {
+				            Flash.setSuccess(res.data.message)
+				            this.$router.push(`/recipes/${res.data.id}`)
+				        }
+				        this.isProcessing = false
+				    })
+				    .catch((err) => {
+				        if(err.response.status === 422) {
+				            this.error = err.response.data
+				        }
+				        this.isProcessing = false
+				    })
+			},
   }
 };
 </script>

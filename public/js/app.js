@@ -2110,6 +2110,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
+      mode1: 'upload',
       showeditmodal: false,
       checkauth: false,
       authState: __WEBPACK_IMPORTED_MODULE_4__store_auth__["a" /* default */].state,
@@ -2144,6 +2145,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     checkauth1: function checkauth1() {
       this.$router.push("/");
       console.log("call redirect");
+    },
+    save: function save(mode) {
+      var _this = this;
+
+      var form = Object(__WEBPACK_IMPORTED_MODULE_2__helpers_form__["a" /* toMulipartedForm */])(this.form, mode);
+      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["b" /* post */])(this.storeURL, form).then(function (res) {
+        if (res.data.saved) {
+          __WEBPACK_IMPORTED_MODULE_5__helpers_flash__["a" /* default */].setSuccess(res.data.message);
+          _this.$router.push("/recipes/" + res.data.id);
+        }
+        _this.isProcessing = false;
+      }).catch(function (err) {
+        if (err.response.status === 422) {
+          _this.error = err.response.data;
+        }
+        _this.isProcessing = false;
+      });
     }
   }
 });
@@ -2945,17 +2963,7 @@ var render = function() {
                   ],
                   1
                 )
-              ]),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn__primary",
-                  attrs: { disabled: _vm.isProcessing },
-                  on: { click: _vm.save }
-                },
-                [_vm._v("Save")]
-              )
+              ])
             ])
           : _vm._e()
       ])
@@ -17677,12 +17685,12 @@ function interceptors(cb) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export toMulipartedForm */
+/* harmony export (immutable) */ __webpack_exports__["a"] = toMulipartedForm;
 /* unused harmony export objectToFormData */
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 function toMulipartedForm(form, mode) {
-    if (mode === 'edit' && typeof form.image === 'string') {
+    if (mode === 'upload' && typeof form.image === 'string') {
         var temp = JSON.parse(JSON.stringify(form));
         delete temp.image;
         return temp;
