@@ -1776,6 +1776,232 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Education.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    value: {
+      type: [String, File],
+      default: null
+    }
+  },
+  data: function data() {
+    return {
+      education: [],
+      editeducation: {
+        school: null,
+        degree: null,
+        course: null,
+        start: null,
+        end: null
+      }
+    };
+  },
+  mounted: function mounted() {
+    this.Edudata();
+  },
+
+  methods: {
+    Edudata: function Edudata() {
+      this.education = [{
+        school: "Federal University of Technology",
+        degree: "Mtech",
+        course: 'Electrical & Electronics Engineering',
+        start: "09,2008",
+        end: "03,2014"
+      }, {
+        school: "Ladoke Akintola University",
+        degree: "  BEng",
+        course: 'Electrical & Electronics Engineering',
+        start: "09,2008",
+        end: "03,2014"
+      }, {
+        school: "Babcock University",
+        degree: "Mtech",
+        course: 'Electrical & Electronics Engineering',
+        start: "09,2008",
+        end: "03,2014"
+      }];
+    },
+    addEducation: function addEducation() {
+      this.education.push({
+        school: "",
+        degree: "",
+        course: "",
+        start: "",
+        end: ""
+      });
+    },
+    remove: function remove(type, index) {
+      if (this.education.length > 0) {
+        this.education.splice(index, 1);
+      }
+    },
+    edit: function edit(edudata) {
+      this.editeducation.school = edudata.school;
+      this.editeducation.degree = edudata.degree;
+      this.editeducation.degree = edudata.course;
+      this.editeducation.start = edudata.start;
+      this.editeducation.end = edudata.end;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Experience.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    value: {
+      type: [String, File],
+      default: null
+    }
+  },
+  data: function data() {
+    return {
+      experience: [],
+      editexperience: {
+        compamy_name: null,
+        role_title: null,
+        city: null,
+        country: null,
+        description: null,
+        start_date: null,
+        end_date: null
+      }
+    };
+  },
+  mounted: function mounted() {
+    this.Expdata();
+  },
+
+  methods: {
+    Expdata: function Expdata() {
+      this.experience = [{
+        compamy_name: "Tesla",
+        role_title: "Software Engineer",
+        city: "California",
+        country: "United State",
+        description: " Set company technical vision and leading company’s technological development. Developed strategic plans and setting timelines for evaluation, development, and deployment of all technical, web, and mobile services. ",
+        start_date: "09,2008",
+        end_date: "03,2014"
+      }, {
+        compamy_name: "Favecode54",
+        role_title: "Software Engineer",
+        city: "California",
+        country: "United State",
+        description: "  Collaborated with department heads, marketing, collections, and operations as advisor of all technologies involved with company. Ensured technology standards and best practices are met. Monitoring web analytics and making recommendations that align to business goals ",
+        start_date: "09,2008",
+        end_date: "03,2014"
+      }, {
+        compamy_name: "Andela",
+        role_title: "Software Engineer",
+        city: "California",
+        country: "United State",
+        description: "  Ensured technology standards and best practices are met. Monitoring web analytics and making recommendations that align to business goals ",
+        start_date: "09,2008",
+        end_date: "03,2014"
+      }];
+    },
+    addexperience: function addexperience() {
+      this.experience.push({
+        compamy_name: "",
+        role_title: "",
+        city: "",
+        country: "",
+        description: "",
+        start_date: "",
+        end_date: ""
+      });
+    },
+    remove: function remove(type, index) {
+      if (this.experience.length > 0) {
+        this.experience.splice(index, 1);
+      }
+    },
+    edit: function edit(Expdata) {
+      this.editexperience.compamy_name = Expdata.compamy_name;
+      this.editexperience.role_title = Expdata.role_title;
+      this.editexperience.city = Expdata.city;
+      this.editexperience.country = Expdata.country;
+      this.editexperience.description = Expdata.description;
+      this.editexperience.start_date = Expdata.start_date;
+      this.editexperience.end_date = Expdata.end_date;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/ProfilePicUpload.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2065,8 +2291,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_form__ = __webpack_require__("./resources/assets/js/helpers/form.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ProfilePicUpload_vue__ = __webpack_require__("./resources/assets/js/components/ProfilePicUpload.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ProfilePicUpload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_ProfilePicUpload_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store_auth__ = __webpack_require__("./resources/assets/js/store/auth.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_flash__ = __webpack_require__("./resources/assets/js/helpers/flash.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Education_vue__ = __webpack_require__("./resources/assets/js/components/Education.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Education_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Education_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Experience_vue__ = __webpack_require__("./resources/assets/js/components/Experience.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Experience_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_Experience_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__store_auth__ = __webpack_require__("./resources/assets/js/store/auth.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__helpers_flash__ = __webpack_require__("./resources/assets/js/helpers/flash.js");
 //
 //
 //
@@ -2097,6 +2327,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 
 
@@ -2106,14 +2338,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    ImageUpload: __WEBPACK_IMPORTED_MODULE_3__components_ProfilePicUpload_vue___default.a
+    ImageUpload: __WEBPACK_IMPORTED_MODULE_3__components_ProfilePicUpload_vue___default.a,
+    Education: __WEBPACK_IMPORTED_MODULE_4__components_Education_vue___default.a,
+    Experience: __WEBPACK_IMPORTED_MODULE_5__components_Experience_vue___default.a
   },
   data: function data() {
     return {
       mode1: 'upload',
       showeditmodal: false,
       checkauth: false,
-      authState: __WEBPACK_IMPORTED_MODULE_4__store_auth__["a" /* default */].state,
+      authState: __WEBPACK_IMPORTED_MODULE_6__store_auth__["a" /* default */].state,
       form: {
         first_name: "",
         last_name: "",
@@ -2152,7 +2386,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var form = Object(__WEBPACK_IMPORTED_MODULE_2__helpers_form__["a" /* toMulipartedForm */])(this.form, mode);
       Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["b" /* post */])(this.storeURL, form).then(function (res) {
         if (res.data.saved) {
-          __WEBPACK_IMPORTED_MODULE_5__helpers_flash__["a" /* default */].setSuccess(res.data.message);
+          __WEBPACK_IMPORTED_MODULE_7__helpers_flash__["a" /* default */].setSuccess(res.data.message);
           _this.$router.push("/recipes/" + res.data.id);
         }
         _this.isProcessing = false;
@@ -2168,6 +2402,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0f29e37e\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Education.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.modal-window {\r\n  position: fixed;\r\n  background-color: rgba(255, 255, 255, 0.15);\r\n  top: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  z-index: 999;\r\n  opacity: 0;\r\n  pointer-events: none;\r\n  -webkit-transition: all 0.3s;\r\n  transition: all 0.3s;\n}\n.modal-window:target {\r\n  opacity: 1;\r\n  pointer-events: auto;\n}\n.modal-window > div {\r\n  width: 400px;\r\n  position: relative;\r\n  margin: 10% auto;\r\n  padding: 2rem;\r\n  background: #fff;\r\n  color: #444;\n}\n.modal-window header {\r\n  font-weight: bold;\n}\n.modal-close {\r\n  color: #aaa;\r\n  line-height: 50px;\r\n  font-size: 80%;\r\n  position: absolute;\r\n  right: 0;\r\n  text-align: center;\r\n  top: 0;\r\n  width: 70px;\r\n  text-decoration: none;\n}\n.modal-close:hover {\r\n  color: #000;\n}\n.modal-window h1 {\r\n  font-size: 150%;\r\n  margin: 0 0 15px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3050bc19\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/views/Home/Profile.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2177,6 +2426,21 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 // module
 exports.push([module.i, "\n.card {\r\n  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\r\n          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\r\n  max-width: 300px;\r\n  margin: auto;\r\n  text-align: center;\n}\n.title {\r\n  color: grey;\r\n  font-size: 18px;\n}\nbutton {\r\n  border: none;\r\n  outline: 0;\r\n  display: inline-block;\r\n  padding: 8px;\r\n  color: white;\r\n  background-color: #000;\r\n  text-align: center;\r\n  cursor: pointer;\r\n  width: 100%;\r\n  font-size: 18px;\n}\na {\r\n  text-decoration: none;\r\n  font-size: 22px;\r\n  color: black;\n}\nbutton:hover,\r\na:hover {\r\n  opacity: 0.7;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9fab81be\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Experience.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.modal-window {\r\n  position: fixed;\r\n  background-color: rgba(255, 255, 255, 0.15);\r\n  top: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  z-index: 999;\r\n  opacity: 0;\r\n  pointer-events: none;\r\n  -webkit-transition: all 0.3s;\r\n  transition: all 0.3s;\n}\n.modal-window:target {\r\n  opacity: 1;\r\n  pointer-events: auto;\n}\n.modal-window > div {\r\n  width: 400px;\r\n  position: relative;\r\n  margin: 10% auto;\r\n  padding: 2rem;\r\n  background: #fff;\r\n  color: #444;\n}\n.modal-window header {\r\n  font-weight: bold;\n}\n.modal-close {\r\n  color: #aaa;\r\n  line-height: 50px;\r\n  font-size: 80%;\r\n  position: absolute;\r\n  right: 0;\r\n  text-align: center;\r\n  top: 0;\r\n  width: 70px;\r\n  text-decoration: none;\n}\n.modal-close:hover {\r\n  color: #000;\n}\n.modal-window h1 {\r\n  font-size: 150%;\r\n  margin: 0 0 15px;\n}\r\n", ""]);
 
 // exports
 
@@ -2857,6 +3121,212 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0f29e37e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Education.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "image" },
+    [
+      _c("h2", [_vm._v("Education")]),
+      _vm._v(" "),
+      _vm._l(_vm.education, function(edulist, index) {
+        return _c("div", { staticClass: "recipe__form" }, [
+          _c("div", { staticClass: "form__control" }, [
+            _vm._v(" " + _vm._s(edulist.school))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form__control" }, [
+            _vm._v(" " + _vm._s(edulist.degree))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form__control" }, [
+            _vm._v(" " + _vm._s(edulist.course))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form__control" }, [
+            _vm._v(" " + _vm._s(edulist.start))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form__control" }, [
+            _vm._v(" " + _vm._s(edulist.end))
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn__danger",
+              on: {
+                click: function($event) {
+                  _vm.remove("education", index)
+                }
+              }
+            },
+            [_vm._v("del")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn__success",
+              attrs: { href: "#open-modal" },
+              on: {
+                click: function($event) {
+                  _vm.edit(edulist)
+                }
+              }
+            },
+            [_vm._v("edit")]
+          )
+        ])
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "modal-window", attrs: { id: "open-modal" } }, [
+        _c("div", [
+          _c(
+            "a",
+            {
+              staticClass: "modal-close",
+              attrs: { href: "#modal-close", title: "Close" }
+            },
+            [_vm._v("Close")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.editeducation.school,
+                expression: "editeducation.school"
+              }
+            ],
+            staticClass: "form__control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.editeducation.school },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.editeducation, "school", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.editeducation.degree,
+                expression: "editeducation.degree"
+              }
+            ],
+            staticClass: "form__control ",
+            attrs: { type: "text" },
+            domProps: { value: _vm.editeducation.degree },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.editeducation, "degree", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.editeducation.course,
+                expression: "editeducation.course"
+              }
+            ],
+            staticClass: "form__control ",
+            attrs: { type: "text" },
+            domProps: { value: _vm.editeducation.course },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.editeducation, "course", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.editeducation.start,
+                expression: "editeducation.start"
+              }
+            ],
+            staticClass: "form__control",
+            attrs: { type: "date" },
+            domProps: { value: _vm.editeducation.start },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.editeducation, "start", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.editeducation.end,
+                expression: "editeducation.end"
+              }
+            ],
+            staticClass: "form__control ",
+            attrs: { type: "date" },
+            domProps: { value: _vm.editeducation.end },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.editeducation, "end", $event.target.value)
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn", on: { click: _vm.addEducation } }, [
+        _vm._v("Add Education")
+      ])
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0f29e37e", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-255ac29f\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/views/Home/Home.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2890,118 +3360,101 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.cauth || _vm.checkauth
-    ? _c("div", { staticClass: "not__found" }, [
-        _c("h1", [_vm._v("Profile Dashboard")]),
-        _vm._v(" "),
-        !_vm.showeditmodal
-          ? _c("div", { staticClass: "card" }, [
-              _c("img", {
-                staticStyle: { width: "100%" },
-                attrs: { src: "/images/Ay.jpg", alt: "Paul" }
-              }),
-              _vm._v(" "),
-              _c("h1", [_vm._v("John Doe")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "title" }, [
-                _vm._v("CEO & Founder, Example")
-              ]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Harvard University")]),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _vm._m(1),
-              _vm._v(" "),
-              _vm._m(2),
-              _vm._v(" "),
-              _vm._m(3),
-              _vm._v(" "),
-              _vm._m(4),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.showeditmodal = true
-                    }
-                  }
-                },
-                [_vm._v("edit/upload")]
-              )
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.showeditmodal
-          ? _c("div", { staticClass: "card " }, [
-              _c(
-                "button",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.showeditmodal = false
-                    }
-                  }
-                },
-                [_vm._v("cancle")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "recipe__image" }, [
+    ? _c(
+        "div",
+        { staticClass: "not__found" },
+        [
+          _c("h1", [_vm._v("Profile Dashboard")]),
+          _vm._v(" "),
+          !_vm.showeditmodal
+            ? _c("div", { staticClass: "card" }, [
+                _c("img", {
+                  staticStyle: { width: "100%" },
+                  attrs: { src: "/images/fav.jpg", alt: "Paul" }
+                }),
+                _vm._v(" "),
+                _c("h1", [_vm._v("Favour Ori")]),
+                _vm._v(" "),
+                _c("p", { staticClass: "title" }, [
+                  _vm._v("CEO & Founder, Favcode")
+                ]),
+                _vm._v(" "),
+                _c("p", [_vm._v("Harvard University")]),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
                 _c(
-                  "div",
-                  { staticClass: "recipe__box" },
-                  [
-                    _c("image-upload", {
-                      model: {
-                        value: _vm.form.image,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "image", $$v)
-                        },
-                        expression: "form.image"
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.showeditmodal = true
                       }
-                    })
-                  ],
-                  1
+                    }
+                  },
+                  [_vm._v("edit/upload")]
                 )
               ])
-            ])
-          : _vm._e()
-      ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.showeditmodal
+            ? _c("div", { staticClass: "card " }, [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.showeditmodal = false
+                      }
+                    }
+                  },
+                  [_vm._v("cancle")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "recipe__image" }, [
+                  _c(
+                    "div",
+                    { staticClass: "recipe__box" },
+                    [
+                      _c("image-upload", {
+                        model: {
+                          value: _vm.form.image,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "image", $$v)
+                          },
+                          expression: "form.image"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn__primary",
+                    attrs: { disabled: _vm.isProcessing },
+                    on: {
+                      click: function($event) {
+                        _vm.save(_vm.mode1)
+                      }
+                    }
+                  },
+                  [_vm._v("Save")]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("education"),
+          _vm._v(" "),
+          _c("experience")
+        ],
+        1
+      )
     : _vm._e()
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fa fa-dribbble" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fa fa-twitter" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fa fa-linkedin" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fa fa-facebook" })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -3460,6 +3913,268 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-8a76d802", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-9fab81be\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Experience.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "image" },
+    [
+      _c("h2", [_vm._v("Professional Experience")]),
+      _vm._v(" "),
+      _vm._l(_vm.experience, function(edulist, index) {
+        return _c("div", { staticClass: "recipe__form" }, [
+          _c("div", { staticClass: "form__control" }, [
+            _vm._v(" " + _vm._s(edulist.compamy_name))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form__control" }, [
+            _vm._v(" " + _vm._s(edulist.role_title))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form__control" }, [
+            _vm._v(" " + _vm._s(edulist.city))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form__control" }, [
+            _vm._v(" " + _vm._s(edulist.country))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form__control" }, [
+            _vm._v(" " + _vm._s(edulist.description))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form__control" }, [
+            _vm._v(" " + _vm._s(edulist.start_date))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form__control" }, [
+            _vm._v(" " + _vm._s(edulist.end_date))
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn__danger",
+              on: {
+                click: function($event) {
+                  _vm.remove("experience", index)
+                }
+              }
+            },
+            [_vm._v("del")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn__success",
+              attrs: { href: "#open-modal" },
+              on: {
+                click: function($event) {
+                  _vm.edit(edulist)
+                }
+              }
+            },
+            [_vm._v("edit")]
+          )
+        ])
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "modal-window", attrs: { id: "open-modal" } }, [
+        _c("div", [
+          _c(
+            "a",
+            {
+              staticClass: "modal-close",
+              attrs: { href: "#modal-close", title: "Close" }
+            },
+            [_vm._v("Close")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.editexperience.compamy_name,
+                expression: "editexperience.compamy_name"
+              }
+            ],
+            staticClass: "form__control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.editexperience.compamy_name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.editexperience,
+                  "compamy_name",
+                  $event.target.value
+                )
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.editexperience.role_title,
+                expression: "editexperience.role_title"
+              }
+            ],
+            staticClass: "form__control ",
+            attrs: { type: "text" },
+            domProps: { value: _vm.editexperience.role_title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.editexperience, "role_title", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.editexperience.city,
+                expression: "editexperience.city"
+              }
+            ],
+            staticClass: "form__control ",
+            attrs: { type: "text" },
+            domProps: { value: _vm.editexperience.city },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.editexperience, "city", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.editexperience.country,
+                expression: "editexperience.country"
+              }
+            ],
+            staticClass: "form__control",
+            attrs: { type: "date" },
+            domProps: { value: _vm.editexperience.country },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.editexperience, "country", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.editexperience.description,
+                expression: "editexperience.description"
+              }
+            ],
+            staticClass: "form__control ",
+            attrs: { type: "date" },
+            domProps: { value: _vm.editexperience.description },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.editexperience, "description", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.editexperience.start_date,
+                expression: "editexperience.start_date"
+              }
+            ],
+            staticClass: "form__control",
+            attrs: { type: "date" },
+            domProps: { value: _vm.editexperience.start_date },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.editexperience, "start_date", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.editexperience.end_date,
+                expression: "editexperience.end_date"
+              }
+            ],
+            staticClass: "form__control ",
+            attrs: { type: "date" },
+            domProps: { value: _vm.editexperience.end_date },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.editexperience, "end_date", $event.target.value)
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn", on: { click: _vm.addexperience } }, [
+        _vm._v("Add experience")
+      ])
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9fab81be", module.exports)
   }
 }
 
@@ -6138,6 +6853,33 @@ if (inBrowser && window.Vue) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0f29e37e\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Education.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0f29e37e\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Education.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("077588f0", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0f29e37e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Education.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0f29e37e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Education.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3050bc19\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/views/Home/Profile.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6155,6 +6897,33 @@ if(false) {
  if(!content.locals) {
    module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3050bc19\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue", function() {
      var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3050bc19\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9fab81be\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Experience.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9fab81be\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Experience.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("2b6522eb", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9fab81be\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Experience.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9fab81be\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Experience.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -17492,6 +18261,110 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 	components: { App: __WEBPACK_IMPORTED_MODULE_1__App_vue___default.a },
 	router: __WEBPACK_IMPORTED_MODULE_2__router__["a" /* default */]
 });
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Education.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0f29e37e\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Education.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Education.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0f29e37e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Education.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Education.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0f29e37e", Component.options)
+  } else {
+    hotAPI.reload("data-v-0f29e37e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Experience.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9fab81be\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Experience.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Experience.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-9fab81be\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Experience.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Experience.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9fab81be", Component.options)
+  } else {
+    hotAPI.reload("data-v-9fab81be", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 

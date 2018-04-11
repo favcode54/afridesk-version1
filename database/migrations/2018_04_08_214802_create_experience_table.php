@@ -19,7 +19,7 @@ class CreateExperienceTable extends Migration
             $table->string('compamy_name');
             $table->string('role_title');
             $table->string('city');
-            $table->string('country')->unique();
+            $table->string('country');
             $table->text('description');
             $table->date('start_date');
             $table->date('end_date');

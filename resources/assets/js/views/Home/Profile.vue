@@ -1,16 +1,13 @@
 <template>
     <div class="not__found" v-if="cauth || checkauth">
 		<h1>Profile Dashboard</h1>
+   
     <div class="card" v-if="!showeditmodal">
   
-   <img :src="`/images/Ay.jpg`" alt="Paul" style="width:100%">
-  <h1>John Doe</h1>
-  <p class="title">CEO & Founder, Example</p>
+   <img :src="`/images/fav.jpg`" alt="Paul" style="width:100%">
+  <h1>Favour Ori</h1>
+  <p class="title">CEO & Founder, Favcode</p>
   <p>Harvard University</p>
-  <a href="#"><i class="fa fa-dribbble"></i></a> 
-  <a href="#"><i class="fa fa-twitter"></i></a> 
-  <a href="#"><i class="fa fa-linkedin"></i></a> 
-  <a href="#"><i class="fa fa-facebook"></i></a> 
   <p><button>Contact</button></p>
 <button @click="showeditmodal = true">edit/upload</button>
 
@@ -20,12 +17,15 @@
   <div class="recipe__image">
 				<div class="recipe__box">
 					<image-upload v-model="form.image"></image-upload>
-					<!-- <small class="error__control" v-if="error.image">{{error.image[0]}}</small> -->
+				<!-- <small class="error__control" v-if="error.image">{{error.image[0]}}</small>  -->
 				</div>
 			</div>
-      <!-- <button class="btn btn__primary" @click="save(mode1)" :disabled="isProcessing">Save</button> -->
+      <button class="btn btn__primary" @click="save(mode1)" :disabled="isProcessing">Save</button> 
 </div>
-   
+  
+<education></education>
+<experience></experience>
+
 	</div>
 </template>
 <script type="text/javascript">
@@ -33,11 +33,15 @@ import Vue from "vue";
 import { get, post } from "../../helpers/api";
 import { toMulipartedForm } from "../../helpers/form";
 import ImageUpload from "../../components/ProfilePicUpload.vue";
+import Education from "../../components/Education.vue";
+import Experience from "../../components/Experience.vue";
 import Auth from "../../store/auth";
 import Flash from "../../helpers/flash";
 export default {
   components: {
-			ImageUpload
+			ImageUpload,
+      Education,
+      Experience
 		},
   data() {
     return {
