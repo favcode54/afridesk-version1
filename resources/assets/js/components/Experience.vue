@@ -67,26 +67,6 @@ export default {
             " Set company technical vision and leading company’s technological development. Developed strategic plans and setting timelines for evaluation, development, and deployment of all technical, web, and mobile services. ",
           start_date: "09,2008",
           end_date: "03,2014"
-        },
-        {
-          compamy_name: "Favecode54",
-          role_title: "Software Engineer",
-          city: "California",
-          country: "United State",
-          description:
-            "  Collaborated with department heads, marketing, collections, and operations as advisor of all technologies involved with company. Ensured technology standards and best practices are met. Monitoring web analytics and making recommendations that align to business goals ",
-          start_date: "09,2008",
-          end_date: "03,2014"
-        },
-        {
-          compamy_name: "Andela",
-          role_title: "Software Engineer",
-          city: "California",
-          country: "United State",
-          description:
-            "  Ensured technology standards and best practices are met. Monitoring web analytics and making recommendations that align to business goals ",
-          start_date: "09,2008",
-          end_date: "03,2014"
         }
       ];
     },

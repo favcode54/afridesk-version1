@@ -1,32 +1,45 @@
 <template>
 	<div class="image">
 		<h2>Education</h2>
-         <div v-for="(edulist, index) in education" class="recipe__form">
-            <div class="form__control"> {{edulist.school}}</div>
-             <div class="form__control"> {{edulist.degree}}</div>
+        <div v-for="(edulist, index) in education" class="recipe__form"> 
+           <div  class="form__control"> {{edulist.institution_name}}</div>
+  <div  class="form__control"> {{edulist.degree}}</div>
              <div class="form__control"> {{edulist.course}}</div>
-              <div class="form__control"> {{edulist.start}}</div>
-               <div class="form__control"> {{edulist.end}}</div>
+              <div class="form__control"> {{edulist.start_date}}</div>
+               <div class="form__control"> {{edulist.end_date}}</div>
 						
 						<a @click="remove('education', index)" class="btn btn__danger">del</a>
                         <a @click="edit(edulist)" href="#open-modal" class="btn btn__success">edit</a>
 					</div>
-
+ 
                 <div id="open-modal" class="modal-window">
                     <div><a href="#modal-close" title="Close" class="modal-close">Close</a>
      
-                       <input type="text" class="form__control" v-model="editeducation.school">
+                       <input type="text" class="form__control" v-model="editeducation.institution_name">
 						<input type="text" class="form__control " v-model="editeducation.degree">
                         <input type="text" class="form__control " v-model="editeducation.course">
-                        <input type="date" class="form__control" v-model="editeducation.start">
-						<input type="date" class="form__control " v-model="editeducation.end"> 
-    
+                        <input type="date" class="form__control" v-model="editeducation.start_date">
+						<input type="date" class="form__control " v-model="editeducation.end_date"> 
+    <button @click="save" class="btn">Save</button>
+                    </div>
+                </div>
+
+                <div id="open-modal2" class="modal-window2">
+                    <div><a href="#modal-close2" title="Close" class="modal-close2">Close</a>
+     
+                       <input type="text" class="form__control" v-model="neweducation.institution_name">
+						<input type="text" class="form__control " v-model="neweducation.degree">
+                        <input type="text" class="form__control " v-model="neweducation.course">
+                        <input type="date" class="form__control" v-model="neweducation.start_date">
+						<input type="date" class="form__control " v-model="neweducation.end_date"> 
+    	<button @click="save" class="btn">Save</button>
                     </div>
                 </div>
 					<button @click="addEducation" class="btn">Add Education</button>
 	</div>
 </template>
 <script type="text/javascript">
+import { get } from "../helpers/api";
 export default {
   props: {
     value: {
@@ -37,47 +50,52 @@ export default {
   data() {
     return {
       education: [],
-      editeducation:{
-          school:null,
-          degree:null,
-           course:null,
-          start:null,
-          end:null
+      editeducation: {
+        institution_name: null,
+        degree: null,
+        course: null,
+        start_date: null,
+        end_date: null
       },
+      neweducation: {
+        institution_name: null,
+        degree: null,
+        course: null,
+        start_date: null,
+        end_date: null
+      }
     };
   },
   mounted() {
-    this.Edudata();
+    // this.Edudata();
+  },
+  created() {
+    get("/api/education").then(res => {
+      console.log(res);
+      this.education = res.data.education;
+    });
   },
   methods: {
-    Edudata() {
-      this.education = [
-        {
-          school: "Federal University of Technology",
-          degree: "Mtech",
-          course:'Electrical & Electronics Engineering',
-          start: "09,2008",
-          end: "03,2014"
-        },
-        {
-          school: "Ladoke Akintola University",
-          degree: "  BEng",
-          course:'Electrical & Electronics Engineering',
-          start: "09,2008",
-          end: "03,2014"
-        },
-        {
-          school: "Babcock University",
-          degree: "Mtech",
-          course:'Electrical & Electronics Engineering',
-          start: "09,2008",
-          end: "03,2014"
-        }
-      ];
+    save() {
+      const form = toMulipartedForm(this.form, this.$route.meta.mode);
+      post(this.storeURL, form)
+        .then(res => {
+          if (res.data.saved) {
+            Flash.setSuccess(res.data.message);
+            this.$router.push(`/profile`);
+          }
+          this.isProcessing = false;
+        })
+        .catch(err => {
+          if (err.response.status === 422) {
+            this.error = err.response.data;
+          }
+          this.isProcessing = false;
+        });
     },
     addEducation() {
       this.education.push({
-        school: "",
+        institution_name: "",
         degree: "",
         course: "",
         start: "",
@@ -90,11 +108,11 @@ export default {
       }
     },
     edit(edudata) {
-       this.editeducation.school = edudata.school;
-       this.editeducation.degree = edudata.degree;
-        this.editeducation.degree = edudata.course;
-       this.editeducation.start = edudata.start;
-       this.editeducation.end = edudata.end;
+      this.editeducation.institution_name = edudata.institution_name;
+      this.editeducation.degree = edudata.degree;
+      this.editeducation.course = edudata.course;
+      this.editeducation.start = edudata.start_date;
+      this.editeducation.end = edudata.end_date;
     }
   }
 };

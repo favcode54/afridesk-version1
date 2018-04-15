@@ -15,4 +15,4 @@ use Illuminate\Http\Request;
 Route::post('login', 'AuthController@login');
 Route::post('logout', 'AuthController@logout');
 Route::post('register', 'AuthController@register');
-Route::resource('home', 'HomeController');
+Route::resource('education', 'EducationController');

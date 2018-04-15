@@ -1692,7 +1692,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var _this = this;
 
     // global error http handler
-    Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["a" /* interceptors */])(function (err) {
+    Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["b" /* interceptors */])(function (err) {
       if (err.response.status === 401) {
         __WEBPACK_IMPORTED_MODULE_0__store_auth__["a" /* default */].remove();
         _this.$router.push("/");
@@ -1744,7 +1744,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.isProcessing = true;
       this.error = {};
-      Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["b" /* post */])("api/login", this.forml).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["c" /* post */])("api/login", this.forml).then(function (res) {
         if (res.data.authenticated) {
           // set token
           __WEBPACK_IMPORTED_MODULE_0__store_auth__["a" /* default */].set(res.data.api_token, res.data.user_id, res.data.username);
@@ -1762,7 +1762,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     logout: function logout() {
       var _this3 = this;
 
-      Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["b" /* post */])("/api/logout").then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["c" /* post */])("/api/logout").then(function (res) {
         if (res.data.done) {
           // remove token
           __WEBPACK_IMPORTED_MODULE_0__store_auth__["a" /* default */].remove();
@@ -1781,6 +1781,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 //
 //
 //
@@ -1809,6 +1810,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -1821,43 +1835,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       education: [],
       editeducation: {
-        school: null,
+        institution_name: null,
         degree: null,
         course: null,
-        start: null,
-        end: null
+        start_date: null,
+        end_date: null
+      },
+      neweducation: {
+        institution_name: null,
+        degree: null,
+        course: null,
+        start_date: null,
+        end_date: null
       }
     };
   },
   mounted: function mounted() {
-    this.Edudata();
+    // this.Edudata();
+  },
+  created: function created() {
+    var _this = this;
+
+    Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/api/education").then(function (res) {
+      console.log(res);
+      _this.education = res.data.education;
+    });
   },
 
   methods: {
-    Edudata: function Edudata() {
-      this.education = [{
-        school: "Federal University of Technology",
-        degree: "Mtech",
-        course: 'Electrical & Electronics Engineering',
-        start: "09,2008",
-        end: "03,2014"
-      }, {
-        school: "Ladoke Akintola University",
-        degree: "  BEng",
-        course: 'Electrical & Electronics Engineering',
-        start: "09,2008",
-        end: "03,2014"
-      }, {
-        school: "Babcock University",
-        degree: "Mtech",
-        course: 'Electrical & Electronics Engineering',
-        start: "09,2008",
-        end: "03,2014"
-      }];
+    save: function save() {
+      var _this2 = this;
+
+      var form = toMulipartedForm(this.form, this.$route.meta.mode);
+      post(this.storeURL, form).then(function (res) {
+        if (res.data.saved) {
+          Flash.setSuccess(res.data.message);
+          _this2.$router.push("/profile");
+        }
+        _this2.isProcessing = false;
+      }).catch(function (err) {
+        if (err.response.status === 422) {
+          _this2.error = err.response.data;
+        }
+        _this2.isProcessing = false;
+      });
     },
     addEducation: function addEducation() {
       this.education.push({
-        school: "",
+        institution_name: "",
         degree: "",
         course: "",
         start: "",
@@ -1870,11 +1895,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     edit: function edit(edudata) {
-      this.editeducation.school = edudata.school;
+      this.editeducation.institution_name = edudata.institution_name;
       this.editeducation.degree = edudata.degree;
-      this.editeducation.degree = edudata.course;
-      this.editeducation.start = edudata.start;
-      this.editeducation.end = edudata.end;
+      this.editeducation.course = edudata.course;
+      this.editeducation.start = edudata.start_date;
+      this.editeducation.end = edudata.end_date;
     }
   }
 });
@@ -1952,22 +1977,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         city: "California",
         country: "United State",
         description: " Set company technical vision and leading company’s technological development. Developed strategic plans and setting timelines for evaluation, development, and deployment of all technical, web, and mobile services. ",
-        start_date: "09,2008",
-        end_date: "03,2014"
-      }, {
-        compamy_name: "Favecode54",
-        role_title: "Software Engineer",
-        city: "California",
-        country: "United State",
-        description: "  Collaborated with department heads, marketing, collections, and operations as advisor of all technologies involved with company. Ensured technology standards and best practices are met. Monitoring web analytics and making recommendations that align to business goals ",
-        start_date: "09,2008",
-        end_date: "03,2014"
-      }, {
-        compamy_name: "Andela",
-        role_title: "Software Engineer",
-        city: "California",
-        country: "United State",
-        description: "  Ensured technology standards and best practices are met. Monitoring web analytics and making recommendations that align to business goals ",
         start_date: "09,2008",
         end_date: "03,2014"
       }];
@@ -2185,7 +2194,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.isProcessing = true;
       this.error = {};
-      Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["b" /* post */])("api/register", this.form).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["c" /* post */])("api/register", this.form).then(function (res) {
         if (res.data.registered) {
           __WEBPACK_IMPORTED_MODULE_1__helpers_flash__["a" /* default */].setSuccess("Congratulations! You have now successfully registered.");
           // this.$router.push('/home')
@@ -2203,7 +2212,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       this.error = {};
-      Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["b" /* post */])("api/login", this.form).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["c" /* post */])("api/login", this.form).then(function (res) {
         if (res.data.authenticated) {
           // set token
           __WEBPACK_IMPORTED_MODULE_0__store_auth__["a" /* default */].set(res.data.api_token, res.data.user_id);
@@ -2384,7 +2393,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       var form = Object(__WEBPACK_IMPORTED_MODULE_2__helpers_form__["a" /* toMulipartedForm */])(this.form, mode);
-      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["b" /* post */])(this.storeURL, form).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["c" /* post */])(this.storeURL, form).then(function (res) {
         if (res.data.saved) {
           __WEBPACK_IMPORTED_MODULE_7__helpers_flash__["a" /* default */].setSuccess(res.data.message);
           _this.$router.push("/recipes/" + res.data.id);
@@ -3137,7 +3146,7 @@ var render = function() {
       _vm._l(_vm.education, function(edulist, index) {
         return _c("div", { staticClass: "recipe__form" }, [
           _c("div", { staticClass: "form__control" }, [
-            _vm._v(" " + _vm._s(edulist.school))
+            _vm._v(" " + _vm._s(edulist.institution_name))
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form__control" }, [
@@ -3149,11 +3158,11 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form__control" }, [
-            _vm._v(" " + _vm._s(edulist.start))
+            _vm._v(" " + _vm._s(edulist.start_date))
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form__control" }, [
-            _vm._v(" " + _vm._s(edulist.end))
+            _vm._v(" " + _vm._s(edulist.end_date))
           ]),
           _vm._v(" "),
           _c(
@@ -3201,19 +3210,23 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.editeducation.school,
-                expression: "editeducation.school"
+                value: _vm.editeducation.institution_name,
+                expression: "editeducation.institution_name"
               }
             ],
             staticClass: "form__control",
             attrs: { type: "text" },
-            domProps: { value: _vm.editeducation.school },
+            domProps: { value: _vm.editeducation.institution_name },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.editeducation, "school", $event.target.value)
+                _vm.$set(
+                  _vm.editeducation,
+                  "institution_name",
+                  $event.target.value
+                )
               }
             }
           }),
@@ -3267,19 +3280,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.editeducation.start,
-                expression: "editeducation.start"
+                value: _vm.editeducation.start_date,
+                expression: "editeducation.start_date"
               }
             ],
             staticClass: "form__control",
             attrs: { type: "date" },
-            domProps: { value: _vm.editeducation.start },
+            domProps: { value: _vm.editeducation.start_date },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.editeducation, "start", $event.target.value)
+                _vm.$set(_vm.editeducation, "start_date", $event.target.value)
               }
             }
           }),
@@ -3289,24 +3302,163 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.editeducation.end,
-                expression: "editeducation.end"
+                value: _vm.editeducation.end_date,
+                expression: "editeducation.end_date"
               }
             ],
             staticClass: "form__control ",
             attrs: { type: "date" },
-            domProps: { value: _vm.editeducation.end },
+            domProps: { value: _vm.editeducation.end_date },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.editeducation, "end", $event.target.value)
+                _vm.$set(_vm.editeducation, "end_date", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c("button", { staticClass: "btn", on: { click: _vm.save } }, [
+            _vm._v("Save")
+          ])
         ])
       ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "modal-window2", attrs: { id: "open-modal2" } },
+        [
+          _c("div", [
+            _c(
+              "a",
+              {
+                staticClass: "modal-close2",
+                attrs: { href: "#modal-close2", title: "Close" }
+              },
+              [_vm._v("Close")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.neweducation.institution_name,
+                  expression: "neweducation.institution_name"
+                }
+              ],
+              staticClass: "form__control",
+              attrs: { type: "text" },
+              domProps: { value: _vm.neweducation.institution_name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.neweducation,
+                    "institution_name",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.neweducation.degree,
+                  expression: "neweducation.degree"
+                }
+              ],
+              staticClass: "form__control ",
+              attrs: { type: "text" },
+              domProps: { value: _vm.neweducation.degree },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.neweducation, "degree", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.neweducation.course,
+                  expression: "neweducation.course"
+                }
+              ],
+              staticClass: "form__control ",
+              attrs: { type: "text" },
+              domProps: { value: _vm.neweducation.course },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.neweducation, "course", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.neweducation.start_date,
+                  expression: "neweducation.start_date"
+                }
+              ],
+              staticClass: "form__control",
+              attrs: { type: "date" },
+              domProps: { value: _vm.neweducation.start_date },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.neweducation, "start_date", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.neweducation.end_date,
+                  expression: "neweducation.end_date"
+                }
+              ],
+              staticClass: "form__control ",
+              attrs: { type: "date" },
+              domProps: { value: _vm.neweducation.end_date },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.neweducation, "end_date", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("button", { staticClass: "btn", on: { click: _vm.save } }, [
+              _vm._v("Save")
+            ])
+          ])
+        ]
+      ),
       _vm._v(" "),
       _c("button", { staticClass: "btn", on: { click: _vm.addEducation } }, [
         _vm._v("Add Education")
@@ -18468,10 +18620,10 @@ module.exports = Component.exports
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export get */
-/* harmony export (immutable) */ __webpack_exports__["b"] = post;
+/* harmony export (immutable) */ __webpack_exports__["a"] = get;
+/* harmony export (immutable) */ __webpack_exports__["c"] = post;
 /* unused harmony export del */
-/* harmony export (immutable) */ __webpack_exports__["a"] = interceptors;
+/* harmony export (immutable) */ __webpack_exports__["b"] = interceptors;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__("./node_modules/axios/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_auth__ = __webpack_require__("./resources/assets/js/store/auth.js");
