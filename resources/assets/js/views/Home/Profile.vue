@@ -79,24 +79,8 @@ export default {
     checkauth1() {
       this.$router.push("/");
       console.log("call redirect");
-    },
-    save(mode) {
-				const form = toMulipartedForm(this.form, mode) 
-				post(this.storeURL, form)
-				    .then((res) => {
-				        if(res.data.saved) {
-				            Flash.setSuccess(res.data.message)
-				            this.$router.push(`/recipes/${res.data.id}`)
-				        }
-				        this.isProcessing = false
-				    })
-				    .catch((err) => {
-				        if(err.response.status === 422) {
-				            this.error = err.response.data
-				        }
-				        this.isProcessing = false
-				    })
-			},
+    }
+    
   }
 };
 </script>

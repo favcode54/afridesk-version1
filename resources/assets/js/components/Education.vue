@@ -20,7 +20,7 @@
                         <input type="text" class="form__control " v-model="editeducation.course">
                         <input type="date" class="form__control" v-model="editeducation.start_date">
 						<input type="date" class="form__control " v-model="editeducation.end_date"> 
-    <button @click="save" class="btn">Save</button>
+    <button @click="save(editeducation,'edit')" class="btn">Save</button>
                     </div>
                 </div>
 
@@ -39,7 +39,10 @@
 	</div>
 </template>
 <script type="text/javascript">
-import { get } from "../helpers/api";
+  import Vue from 'vue'
+	import Flash from '../helpers/flash'
+	import { get, post } from '../helpers/api'
+	import { toMulipartedForm } from '../helpers/form'
 export default {
   props: {
     value: {
@@ -49,6 +52,8 @@ export default {
   },
   data() {
     return {
+      storeURL: `/api/education`,
+				action: 'Viewall',
       education: [],
       editeducation: {
         institution_name: null,
@@ -75,23 +80,26 @@ export default {
       this.education = res.data.education;
     });
   },
+  
   methods: {
-    save() {
-      const form = toMulipartedForm(this.form, this.$route.meta.mode);
-      post(this.storeURL, form)
-        .then(res => {
-          if (res.data.saved) {
-            Flash.setSuccess(res.data.message);
-            this.$router.push(`/profile`);
-          }
-          this.isProcessing = false;
-        })
-        .catch(err => {
-          if (err.response.status === 422) {
-            this.error = err.response.data;
-          }
-          this.isProcessing = false;
-        });
+    save(form,mode) {
+      	this.storeURL = `/api/education/${this.form.id}?_method=PUT`
+      const cform = toMulipartedForm(form, mode);
+      console.log(cform)
+      // post(this.storeURL, cform)
+      //   .then(res => {
+      //     if (res.data.saved) {
+      //       Flash.setSuccess(res.data.message);
+      //       this.$router.push(`/profile`);
+      //     }
+      //     this.isProcessing = false;
+      //   })
+      //   .catch(err => {
+      //     if (err.response.status === 422) {
+      //       this.error = err.response.data;
+      //     }
+      //     this.isProcessing = false;
+      //   });
     },
     addEducation() {
       this.education.push({
