@@ -30,8 +30,6 @@
 </template>
 <script type="text/javascript">
 import Vue from "vue";
-import { get, post } from "../../helpers/api";
-import { toMulipartedForm } from "../../helpers/form";
 import ImageUpload from "../../components/ProfilePicUpload.vue";
 import Education from "../../components/Education.vue";
 import Experience from "../../components/Experience.vue";

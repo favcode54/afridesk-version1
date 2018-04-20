@@ -1,5 +1,5 @@
 export function toMulipartedForm(form, mode) {
-    if (mode === 'edit') {
+    if (mode === 'create') {
         //   && typeof form.image === 'string'
         const temp = JSON.parse(JSON.stringify(form))
         console.log(temp)

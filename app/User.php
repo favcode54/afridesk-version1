@@ -28,6 +28,9 @@ class User extends Authenticatable
     ];
 
     public function education() {
-        return $this->hasOne(Education::class, 'user_id', 'id');
+        return $this->hasMany(Education::class);
+    }
+    public function experience() {
+        return $this->hasMany(Experience::class);
     }
 }

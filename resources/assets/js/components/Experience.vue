@@ -1,36 +1,67 @@
 <template>
-	<div class="image">
-		<h2>Professional Experience</h2>
-        <div v-for="(edulist, index) in experience" class="recipe__form">
-            <div class="form__control"> {{edulist.compamy_name}}</div>
-             <div class="form__control"> {{edulist.role_title}}</div>
-             <div class="form__control"> {{edulist.city}}</div>
-                <div class="form__control"> {{edulist.country}}</div>
-               <div class="form__control"> {{edulist.description}}</div>
-              <div class="form__control"> {{edulist.start_date}}</div>
-               <div class="form__control"> {{edulist.end_date}}</div>
-						
-						<a @click="remove('experience', index)" class="btn btn__danger">del</a>
-                        <a @click="edit(edulist)" href="#open-modal" class="btn btn__success">edit</a>
-					</div>
+    <div class="image">
 
-                <div id="open-modal" class="modal-window">
-                    <div><a href="#modal-close" title="Close" class="modal-close">Close</a>
-     
-                       <input type="text" class="form__control" v-model="editexperience.compamy_name">
-						<input type="text" class="form__control " v-model="editexperience.role_title">
-                        <input type="text" class="form__control " v-model="editexperience.city">
-                        <input type="date" class="form__control" v-model="editexperience.country">
-						<input type="date" class="form__control " v-model="editexperience.description"> 
-                        <input type="date" class="form__control" v-model="editexperience.start_date">
-						<input type="date" class="form__control " v-model="editexperience.end_date"> 
-    
-                    </div>
-                </div>
-					<button @click="addexperience" class="btn">Add experience</button>
-	</div>
+        <h2>Professional Experience</h2>
+        <div v-for="(experienceList, index) in experience" v-if="user_id == experienceList.user_id" class="recipe__form">
+            <div class="form__control"> {{experienceList.compamy_name}}</div>
+            <div class="form__control"> {{experienceList.role_title}}</div>
+            <div class="form__control"> {{experienceList.city}}</div>
+            <div class="form__control"> {{experienceList.country}}</div>
+            <div class="form__control"> {{experienceList.description}}</div>
+            <div class="form__control"> {{experienceList.start_date}}</div>
+            <div class="form__control"> {{experienceList.end_date}}</div>
+            <a @click="remove('experience', index)" class="btn btn__danger">del</a>
+            <a @click="edit(experienceList)" href="#open-modal3" class="btn btn__success">edit</a>
+        </div>
+
+        <div id="open-modal3" class="modal-window3">
+            <div>
+                <a href="#modal-close3" title="Close" class="modal-close3">Close</a>
+                <h3>Edit experience</h3>
+                <form v-on:submit="update(editExperience, editExperience.id, 'edit')">
+                    <input type="hidden" class="form__control" v-model="editExperience.user_id">
+                    <input type="text" class="form__control" v-model="editExperience.compamy_name">
+                    <input type="text" class="form__control " v-model="editExperience.role_title">
+                    <input type="text" class="form__control " v-model="editExperience.city">
+                    <input type="text" class="form__control" v-model="editExperience.country">
+                    <input type="text" class="form__control " v-model="editExperience.description">
+                    <input type="date" class="form__control" v-model="editExperience.start_date">
+                    <input type="date" class="form__control " v-model="editExperience.end_date">
+                    <button class="btn">Save</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="open-modal4" class="modal-window4">
+            <div>
+                <h3>New experience</h3>
+                <form v-on:submit="addExperience(newExperience)">
+                    <a href="#modal-close4" title="Close" class="modal-close4">Close</a>
+                    <input type="text" class="form__control" v-model="newExperience.compamy_name">
+                    <input type="text" class="form__control " v-model="newExperience.role_title">
+                    <input type="text" class="form__control " v-model="newExperience.city">
+                     <input type="text" class="form__control" v-model="newExperience.country">
+                    <input type="text" class="form__control " v-model="newExperience.description">
+                    <input type="date" class="form__control" v-model="newExperience.start_date">
+                    <input type="date" class="form__control " v-model="newExperience.end_date">
+                    <button class="btn">Save</button>
+                </form>
+            </div>
+        </div>
+
+        <button class="btn">
+            <a href="#open-modal4" class="btn btn__success">Add</a>
+        </button>
+
+    </div>
 </template>
 <script type="text/javascript">
+import Vue from "vue";
+import Auth from "../store/auth";
+import axios from "axios";
+import Flash from "../helpers/flash";
+import { get, post, update } from "../helpers/api";
+import { toMulipartedForm } from "../helpers/form";
 export default {
   props: {
     value: {
@@ -40,66 +71,135 @@ export default {
   },
   data() {
     return {
+      authState: Auth.state,
+      storeURL: `/api/experience`,
+      action: "Viewall",
       experience: [],
-      editexperience: {
+      editExperience: {
         compamy_name: null,
         role_title: null,
         city: null,
-        country: null,
-        description: null,
         start_date: null,
-        end_date: null
+        end_date: null,
+        user_id: null,
+        id: null
+      },
+      newExperience: {
+        compamy_name: null,
+        role_title: null,
+        city: null,
+        start_date: null
       }
     };
   },
   mounted() {
-    this.Expdata();
+    // this.experienceData();
   },
+  computed: {
+    user_id() {
+      if (this.authState.api_token) {
+        return this.authState.user_id;
+      }
+    }
+  },
+  created() {
+    this.getExperience();
+  },
+
   methods: {
-    Expdata() {
-      this.experience = [
-        {
-          compamy_name: "Tesla",
-          role_title: "Software Engineer",
-          city: "California",
-          country: "United State",
-          description:
-            " Set company technical vision and leading company’s technological development. Developed strategic plans and setting timelines for evaluation, development, and deployment of all technical, web, and mobile services. ",
-          start_date: "09,2008",
-          end_date: "03,2014"
-        }
-      ];
-    },
-    addexperience() {
-      this.experience.push({
-        compamy_name: "",
-        role_title: "",
-        city: "",
-        country: "",
-        description: "",
-        start_date: "",
-        end_date: ""
+    getExperience() {
+      get("/api/experience").then(res => {
+        this.experience = res.data.experience;
+        console.log(this.experience);
       });
     },
+    update(form, id, mode) {
+      event.preventDefault();
+      let uri = `/api/experience/${id}?_method=PUT`;
+      const cForm = toMulipartedForm(form, mode);
+      console.log(cForm);
+      post(uri, cForm)
+        .then(res => {
+          if (res.data.saved) {
+            Flash.setSuccess(res.data.message);
+            this.getExperience();
+          }
+          this.isProcessing = false;
+        })
+        .catch(err => {
+          if (err.response.status === 422) {
+            this.error = err.response.data;
+          }
+          this.isProcessing = false;
+        });
+    },
+    addExperience(form) {
+      form.user_id = this.authState.user_id;
+      console.log(form);
+      event.preventDefault();
+
+      post(this.storeURL, form)
+        .then(res => {
+          if (res.data.saved) {
+            Flash.setSuccess(res.data.message);
+            this.getexperience();
+          }
+          this.isProcessing = false;
+        })
+        .catch(err => {
+          if (err.response.status === 422) {
+            this.error = err.response.data;
+          }
+          this.isProcessing = false;
+        });
+    },
+
+    // save(form, mode) {
+    //   if (mode == "create") {
+    //     newExperience.user_id = this.authState.user_id;
+    //     this.storeURL = `/api/experience`;
+    //   } else {
+    //     // this.storeURL = `/api/experience/${this.form.id}?_method=PUT`
+    //   }
+    //   const cForm = toMulipartedForm(form, mode);
+    //   console.log(cForm);
+    //   post(this.storeURL, cForm)
+    //     .then(res => {
+    //       if (res.data.saved) {
+    //         Flash.setSuccess(res.data.message);
+    //         this.$router.push(`/profile`);
+    //       }
+    //       this.isProcessing = false;
+    //     })
+    //     .catch(err => {
+    //       if (err.response.status === 422) {
+    //         this.error = err.response.data;
+    //       }
+    //       this.isProcessing = false;
+    //     });
+    // },
     remove(type, index) {
       if (this.experience.length > 0) {
         this.experience.splice(index, 1);
       }
     },
-    edit(Expdata) {
-      this.editexperience.compamy_name = Expdata.compamy_name;
-      this.editexperience.role_title = Expdata.role_title;
-      this.editexperience.city = Expdata.city;
-      this.editexperience.country = Expdata.country;
-      this.editexperience.description = Expdata.description;
-      this.editexperience.start_date = Expdata.start_date;
-      this.editexperience.end_date = Expdata.end_date;
+    edit(experienceData) {
+      this.editExperience.compamy_name = experienceData.compamy_name;
+      this.editExperience.role_title = experienceData.role_title;
+      this.editExperience.city = experienceData.city;
+      this.editExperience.country = experienceData.country;
+      this.editExperience.description = experienceData.description;
+      this.editExperience.start_date = experienceData.start_date;
+      this.editExperience.end_date = experienceData.end_date;
+      this.editExperience.user_id = experienceData.user_id;
+      this.editExperience.id = experienceData.id;
     }
   }
 };
 </script>
 <style>
-.modal-window {
+.modal-window4,
+.modal-window3 {
   position: fixed;
   background-color: rgba(255, 255, 255, 0.15);
   top: 0;
@@ -114,12 +214,14 @@ export default {
   transition: all 0.3s;
 }
 
-.modal-window:target {
+.modal-window3:target,
+.modal-window4:target {
   opacity: 1;
   pointer-events: auto;
 }
 
-.modal-window > div {
+.modal-window3 > div,
+.modal-window4 > div {
   width: 400px;
   position: relative;
   margin: 10% auto;
@@ -128,11 +230,13 @@ export default {
   color: #444;
 }
 
-.modal-window header {
+.modal-window3 header,
+.modal-window4 header {
   font-weight: bold;
 }
 
-.modal-close {
+.modal-close3,
+.modal-close4 {
   color: #aaa;
   line-height: 50px;
   font-size: 80%;
@@ -144,11 +248,13 @@ export default {
   text-decoration: none;
 }
 
-.modal-close:hover {
+.modal-close3:hover,
+.modal-close4:hover {
   color: #000;
 }
 
-.modal-window h1 {
+.modal-window3 h1,
+.modal-window4 h1 {
   font-size: 150%;
   margin: 0 0 15px;
 }

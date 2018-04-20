@@ -8,7 +8,7 @@ class Education extends Model
 {
     //
     protected $fillable = [
-    	'institution_name', 'degree', 'course', 'start_date', 'end_date'
+    	'user_id','institution_name', 'degree', 'course', 'start_date', 'end_date'
     ];
 
     public function user()

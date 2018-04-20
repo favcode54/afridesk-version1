@@ -20,6 +20,20 @@ export function post(url, payload) {
     	}
     })
 }
+
+export function update(url, payload) {
+    // this.axios.patch(uri, this.item).then((response) => {})
+    return axios({
+    	method: 'PUT',
+    	url: url,
+    	data: payload,
+    	headers: {
+    		'Authorization': `Bearer ${Auth.state.api_token}`
+    	}
+    })
+}
+
+
 // delete is reserved keyword
 export function del(url) {
     return axios({
