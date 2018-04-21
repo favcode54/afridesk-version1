@@ -17,3 +17,4 @@ Route::post('logout', 'AuthController@logout');
 Route::post('register', 'AuthController@register');
 Route::resource('education', 'EducationController');
 Route::resource('experience', 'ExperienceController');
+Route::resource('profile', 'ProfileController');

@@ -34,6 +34,6 @@ class CreateExperienceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('experience');
+        Schema::dropIfExists('experiences');
     }
 }

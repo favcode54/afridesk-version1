@@ -4,11 +4,12 @@
    
     <div class="card" v-if="!showeditmodal">
   
-   <img :src="`/images/fav.jpg`" alt="Paul" style="width:100%">
+   <img :src="`/images/${profile.image}`" v-if="profile.image">
+   <img :src="`/images/fav.jpg`" v-else>
+  
   <h1>Favour Ori</h1>
   <p class="title">CEO & Founder, Favcode</p>
   <p>Harvard University</p>
-  <p><button>Contact</button></p>
 <button @click="showeditmodal = true">edit/upload</button>
 
 </div>
@@ -17,10 +18,11 @@
   <div class="recipe__image">
 				<div class="recipe__box">
 					<image-upload v-model="form.image"></image-upload>
-				<!-- <small class="error__control" v-if="error.image">{{error.image[0]}}</small>  -->
+				<small class="error__control" v-if="error.image">{{error.image[0]}}</small> 
 				</div>
 			</div>
-      <button class="btn btn__primary" @click="save(mode1)" :disabled="isProcessing">Save</button> 
+      <button  v-if="profile.image" class="btn btn__primary" @click="uploadImage('img','update')" :disabled="isProcessing">Save</button> 
+      <button v-else class="btn btn__primary" @click="uploadImage('img','upload')" :disabled="isProcessing">Save</button> 
 </div>
   
 <education></education>
@@ -30,6 +32,7 @@
 </template>
 <script type="text/javascript">
 import Vue from "vue";
+import { get, post, update } from "../../helpers/api";
 import ImageUpload from "../../components/ProfilePicUpload.vue";
 import Education from "../../components/Education.vue";
 import Experience from "../../components/Experience.vue";
@@ -47,13 +50,8 @@ export default {
       showeditmodal: false,
       checkauth: false,
       authState: Auth.state,
-      form: {
-        first_name: "",
-        last_name: "",
-        email: "",
-        password: "",
-        password_confirmation: ""
-      },
+      profile: [],
+      form:{},
       error: {},
       isProcessing: false
     };
@@ -73,10 +71,49 @@ export default {
       console.log("call change");
     }
   },
+  created() {
+    this.getImage();
+  },
   methods: {
     checkauth1() {
       this.$router.push("/");
       console.log("call redirect");
+    },
+    getImage(){
+ get("/api/profile").then(res => {
+        this.profile = res.data.profile;
+        console.log(this.profile);
+      });
+    },
+    uploadImage(mode, action){
+      form.user_id = this.authState.user_id;
+       var uri
+      if (action === 'upload'){
+  uri = `/api/profile`; 
+      }
+     else{
+       uri = `/api/profile/${id}?_method=PUT`; 
+     }
+      
+      const cForm = toMulipartedForm(form, mode);
+      console.log(cForm);
+      console.log(form);
+      event.preventDefault();
+
+      post(this.storeURL, form)
+        .then(res => {
+          if (res.data.saved) {
+            Flash.setSuccess(res.data.message);
+            this.getEducation();
+          }
+          this.isProcessing = false;
+        })
+        .catch(err => {
+          if (err.response.status === 422) {
+            this.error = err.response.data;
+          }
+          this.isProcessing = false;
+        });
     }
     
   }

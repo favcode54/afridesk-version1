@@ -2489,14 +2489,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_ProfilePicUpload_vue__ = __webpack_require__("./resources/assets/js/components/ProfilePicUpload.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_ProfilePicUpload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_ProfilePicUpload_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Education_vue__ = __webpack_require__("./resources/assets/js/components/Education.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Education_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Education_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Experience_vue__ = __webpack_require__("./resources/assets/js/components/Experience.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Experience_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Experience_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store_auth__ = __webpack_require__("./resources/assets/js/store/auth.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_flash__ = __webpack_require__("./resources/assets/js/helpers/flash.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ProfilePicUpload_vue__ = __webpack_require__("./resources/assets/js/components/ProfilePicUpload.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ProfilePicUpload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_ProfilePicUpload_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Education_vue__ = __webpack_require__("./resources/assets/js/components/Education.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Education_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Education_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Experience_vue__ = __webpack_require__("./resources/assets/js/components/Experience.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Experience_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Experience_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__store_auth__ = __webpack_require__("./resources/assets/js/store/auth.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__helpers_flash__ = __webpack_require__("./resources/assets/js/helpers/flash.js");
 //
 //
 //
@@ -2527,6 +2528,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
 
 
 
@@ -2536,23 +2540,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    ImageUpload: __WEBPACK_IMPORTED_MODULE_1__components_ProfilePicUpload_vue___default.a,
-    Education: __WEBPACK_IMPORTED_MODULE_2__components_Education_vue___default.a,
-    Experience: __WEBPACK_IMPORTED_MODULE_3__components_Experience_vue___default.a
+    ImageUpload: __WEBPACK_IMPORTED_MODULE_2__components_ProfilePicUpload_vue___default.a,
+    Education: __WEBPACK_IMPORTED_MODULE_3__components_Education_vue___default.a,
+    Experience: __WEBPACK_IMPORTED_MODULE_4__components_Experience_vue___default.a
   },
   data: function data() {
     return {
       mode1: 'upload',
       showeditmodal: false,
       checkauth: false,
-      authState: __WEBPACK_IMPORTED_MODULE_4__store_auth__["a" /* default */].state,
-      form: {
-        first_name: "",
-        last_name: "",
-        email: "",
-        password: "",
-        password_confirmation: ""
-      },
+      authState: __WEBPACK_IMPORTED_MODULE_5__store_auth__["a" /* default */].state,
+      profile: [],
+      form: {},
       error: {},
       isProcessing: false
     };
@@ -2573,10 +2572,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log("call change");
     }
   },
+  created: function created() {
+    this.getImage();
+  },
+
   methods: {
     checkauth1: function checkauth1() {
       this.$router.push("/");
       console.log("call redirect");
+    },
+    getImage: function getImage() {
+      var _this = this;
+
+      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("/api/profile").then(function (res) {
+        _this.profile = res.data.profile;
+        console.log(_this.profile);
+      });
+    },
+    uploadImage: function uploadImage(mode, action) {
+      var _this2 = this;
+
+      form.user_id = this.authState.user_id;
+      var uri;
+      if (action === 'upload') {
+        uri = "/api/profile";
+      } else {
+        uri = "/api/profile/" + id + "?_method=PUT";
+      }
+
+      var cForm = toMulipartedForm(form, mode);
+      console.log(cForm);
+      console.log(form);
+      event.preventDefault();
+
+      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["c" /* post */])(this.storeURL, form).then(function (res) {
+        if (res.data.saved) {
+          __WEBPACK_IMPORTED_MODULE_6__helpers_flash__["a" /* default */].setSuccess(res.data.message);
+          _this2.getEducation();
+        }
+        _this2.isProcessing = false;
+      }).catch(function (err) {
+        if (err.response.status === 422) {
+          _this2.error = err.response.data;
+        }
+        _this2.isProcessing = false;
+      });
     }
   }
 });
@@ -3764,10 +3804,11 @@ var render = function() {
           _vm._v(" "),
           !_vm.showeditmodal
             ? _c("div", { staticClass: "card" }, [
-                _c("img", {
-                  staticStyle: { width: "100%" },
-                  attrs: { src: "/images/fav.jpg", alt: "Paul" }
-                }),
+                _vm.profile.image
+                  ? _c("img", {
+                      attrs: { src: "/images/" + _vm.profile.image }
+                    })
+                  : _c("img", { attrs: { src: "/images/fav.jpg" } }),
                 _vm._v(" "),
                 _c("h1", [_vm._v("Favour Ori")]),
                 _vm._v(" "),
@@ -3776,8 +3817,6 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("p", [_vm._v("Harvard University")]),
-                _vm._v(" "),
-                _vm._m(0),
                 _vm._v(" "),
                 _c(
                   "button",
@@ -3820,25 +3859,45 @@ var render = function() {
                           },
                           expression: "form.image"
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.error.image
+                        ? _c("small", { staticClass: "error__control" }, [
+                            _vm._v(_vm._s(_vm.error.image[0]))
+                          ])
+                        : _vm._e()
                     ],
                     1
                   )
                 ]),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn__primary",
-                    attrs: { disabled: _vm.isProcessing },
-                    on: {
-                      click: function($event) {
-                        _vm.save(_vm.mode1)
-                      }
-                    }
-                  },
-                  [_vm._v("Save")]
-                )
+                _vm.profile.image
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn__primary",
+                        attrs: { disabled: _vm.isProcessing },
+                        on: {
+                          click: function($event) {
+                            _vm.uploadImage("img", "update")
+                          }
+                        }
+                      },
+                      [_vm._v("Save")]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn__primary",
+                        attrs: { disabled: _vm.isProcessing },
+                        on: {
+                          click: function($event) {
+                            _vm.uploadImage("img", "upload")
+                          }
+                        }
+                      },
+                      [_vm._v("Save")]
+                    )
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -3850,14 +3909,7 @@ var render = function() {
       )
     : _vm._e()
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [_c("button", [_vm._v("Contact")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
