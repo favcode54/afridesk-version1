@@ -2,7 +2,7 @@
     <div class="image">
 
         <h2>Professional Experience</h2>
-        <div v-for="(experienceList, index) in experience" v-if="user_id == experienceList.user_id" class="recipe__form">
+        <div v-for="(experienceList, index) in experience" class="favcode__form">
             <div class="form__control"> {{experienceList.compamy_name}}</div>
             <div class="form__control"> {{experienceList.role_title}}</div>
             <div class="form__control"> {{experienceList.city}}</div>
@@ -142,7 +142,7 @@ export default {
         .then(res => {
           if (res.data.saved) {
             Flash.setSuccess(res.data.message);
-            this.getexperience();
+            this.getExperience();
           }
           this.isProcessing = false;
         })
@@ -154,30 +154,6 @@ export default {
         });
     },
 
-    // save(form, mode) {
-    //   if (mode == "create") {
-    //     newExperience.user_id = this.authState.user_id;
-    //     this.storeURL = `/api/experience`;
-    //   } else {
-    //     // this.storeURL = `/api/experience/${this.form.id}?_method=PUT`
-    //   }
-    //   const cForm = toMulipartedForm(form, mode);
-    //   console.log(cForm);
-    //   post(this.storeURL, cForm)
-    //     .then(res => {
-    //       if (res.data.saved) {
-    //         Flash.setSuccess(res.data.message);
-    //         this.$router.push(`/profile`);
-    //       }
-    //       this.isProcessing = false;
-    //     })
-    //     .catch(err => {
-    //       if (err.response.status === 422) {
-    //         this.error = err.response.data;
-    //       }
-    //       this.isProcessing = false;
-    //     });
-    // },
     remove(type, index) {
       if (this.experience.length > 0) {
         this.experience.splice(index, 1);

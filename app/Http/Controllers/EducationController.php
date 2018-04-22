@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\Education;
 use App\User;
@@ -17,8 +17,12 @@ class EducationController extends Controller
 
     public function index()
     {
-    	$education = Education::orderBy('created_at', 'desc')
-    		->get(['id','user_id','institution_name', 'degree', 'course', 'start_date', 'end_date']);
+       
+        
+        $education = user::find(Auth::user()->id)->education;
+       
+    	// $education = Education::orderBy('created_at', 'desc')
+    	// 	->get(['id','user_id','institution_name', 'degree', 'course', 'start_date', 'end_date']);
 
     	return response()
     		->json([

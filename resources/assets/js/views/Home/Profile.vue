@@ -4,10 +4,10 @@
    
     <div class="card" v-if="!showeditmodal">
   
-   <img :src="`/images/${profile.image}`" v-if="profile.image">
+   <img :src="`/images/${profile.image}`" v-if="profile">
    <img :src="`/images/fav.jpg`" v-else>
   
-  <h1>Favour Ori</h1>
+  <h1>{{authState.username}}</h1>
   <p class="title">CEO & Founder, Favcode</p>
   <p>Harvard University</p>
 <button @click="showeditmodal = true">edit/upload</button>
@@ -15,34 +15,38 @@
 </div>
 <div v-if="showeditmodal" class="card ">
   <button @click="showeditmodal = false">cancle</button>
-  <div class="recipe__image">
-				<div class="recipe__box">
+  <div class="favcode__image">
+				<div class="favcode__box">
 					<image-upload v-model="form.image"></image-upload>
 				<small class="error__control" v-if="error.image">{{error.image[0]}}</small> 
 				</div>
 			</div>
-      <button  v-if="profile.image" class="btn btn__primary" @click="uploadImage('img','update')" :disabled="isProcessing">Save</button> 
+      <button  v-if="profile" class="btn btn__primary" @click="uploadImage('img','update')" :disabled="isProcessing">Save</button> 
       <button v-else class="btn btn__primary" @click="uploadImage('img','upload')" :disabled="isProcessing">Save</button> 
 </div>
   
 <education></education>
 <experience></experience>
+<skill></skill>
 
 	</div>
 </template>
 <script type="text/javascript">
 import Vue from "vue";
 import { get, post, update } from "../../helpers/api";
+import { toMulipartedForm } from "../../helpers/form";
 import ImageUpload from "../../components/ProfilePicUpload.vue";
 import Education from "../../components/Education.vue";
 import Experience from "../../components/Experience.vue";
+import Skill from "../../components/Skills.vue";
 import Auth from "../../store/auth";
 import Flash from "../../helpers/flash";
 export default {
   components: {
 			ImageUpload,
       Education,
-      Experience
+      Experience,
+      Skill
 		},
   data() {
     return {
@@ -50,7 +54,7 @@ export default {
       showeditmodal: false,
       checkauth: false,
       authState: Auth.state,
-      profile: [],
+      profile: {},
       form:{},
       error: {},
       isProcessing: false
@@ -82,29 +86,33 @@ export default {
     getImage(){
  get("/api/profile").then(res => {
         this.profile = res.data.profile;
-        console.log(this.profile);
+        console.log(res)
+      //  console.log(this.profile);
       });
     },
     uploadImage(mode, action){
-      form.user_id = this.authState.user_id;
-       var uri
-      if (action === 'upload'){
-  uri = `/api/profile`; 
-      }
-     else{
-       uri = `/api/profile/${id}?_method=PUT`; 
-     }
-      
-      const cForm = toMulipartedForm(form, mode);
-      console.log(cForm);
-      console.log(form);
-      event.preventDefault();
 
-      post(this.storeURL, form)
+      console.log(this.authState);
+       var uri
+      if (action === 'upload')  {
+  uri = `/api/profile`; 
+  this.form.user_id = this.authState.user_id;
+      }
+     else {
+       uri = `/api/profile/${this.profile.id}?_method=PUT`; 
+     }
+    console.log(this.form);
+      const cForm = toMulipartedForm(this.form, mode);
+      console.log(cForm);
+     
+      // event.preventDefault();
+
+      post(uri, cForm)
         .then(res => {
           if (res.data.saved) {
             Flash.setSuccess(res.data.message);
-            this.getEducation();
+            this.showeditmodal = false
+            this.getImage();
           }
           this.isProcessing = false;
         })

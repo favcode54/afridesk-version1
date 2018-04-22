@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,8 @@ Route::post('register', 'AuthController@register');
 Route::resource('education', 'EducationController');
 Route::resource('experience', 'ExperienceController');
 Route::resource('profile', 'ProfileController');
+Route::get('/search',function(){
+    $query = Input::get('query');
+    $skills = \App\Skilllist::where('skill','like','%'.$query.'%')->get();
+    return response()->json($skills);
+   });

@@ -2,7 +2,8 @@
     <div class="image">
 
         <h2>Education</h2>
-        <div v-for="(educationList, index) in education" v-if="user_id == educationList.user_id" class="recipe__form">
+        <!-- v-if="user_id == educationList.user_id" -->
+        <div v-for="(educationList, index) in education"  class="favcode__form">
             <div class="form__control"> {{educationList.institution_name}}</div>
             <div class="form__control"> {{educationList.degree}}</div>
             <div class="form__control"> {{educationList.course}}</div>

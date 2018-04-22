@@ -16,14 +16,5 @@ class Education extends Model
     	return $this->belongsTo(User::class);
     }
 
-    public static function form()
-    {
-        return [
-            'institution_name' => '',
-            'degree' => '',
-            'course' => '',
-            'start_date' => '',
-            'end_date' => ''
-        ];
-    }
+  
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\Experience;
 use App\User;
@@ -17,8 +17,10 @@ class ExperienceController extends Controller
 
     public function index()
     {
-    	$experience = Experience::orderBy('created_at', 'desc')
-    		->get(['id','user_id','compamy_name', 'role_title', 'city', 'country', 'description', 'start_date', 'end_date']);
+
+        $experience = user::find(Auth::user()->id)->experience;
+    	// $experience = Experience::orderBy('created_at', 'desc')
+    	// 	->get(['id','user_id','compamy_name', 'role_title', 'city', 'country', 'description', 'start_date', 'end_date']);
 
     	return response()
     		->json([

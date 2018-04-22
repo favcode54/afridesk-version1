@@ -2,8 +2,8 @@
     <div class="container">
         <div class="navbar">
             <div class="navbar__brand">
-                <!-- <router-link to="/">Afridesk</router-link> -->
-                Afridesk
+                <router-link to="/home">Afridesk</router-link>
+                <!-- Afridesk -->
             </div>
             <ul class="navbar__list">
                 <li class="navbar__item" v-if="auth">

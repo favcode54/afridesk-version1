@@ -7,6 +7,8 @@ import Home from '../views/Home/Home.vue'
 import Profile from '../views/Home/Profile.vue'
 import NotFound from '../views/NotFound.vue'
 
+// Vue.component('autocomplete',require('./components/Autocomplete.vue'));
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -16,7 +18,7 @@ const router = new VueRouter({
         { path: '/home', component: Home },
         { path: '/not-found', component: NotFound },
         { path: '*', component: NotFound },
-        {path: '/profile', component: Profile },
+        { path: '/profile', component: Profile },
     ]
 })
 

@@ -1,9 +1,9 @@
 export function toMulipartedForm(form, mode) {
-    if (mode === 'create') {
-        //   && typeof form.image === 'string'
+    if (mode === 'create' || typeof form.image === 'string') {
+
         const temp = JSON.parse(JSON.stringify(form))
         console.log(temp)
-            //  delete temp.image
+        delete temp.profile_image
         return temp
     } else {
         return objectToFormData(form)
