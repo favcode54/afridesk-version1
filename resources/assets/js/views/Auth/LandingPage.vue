@@ -81,7 +81,9 @@ export default {
               "Congratulations! You have now successfully registered."
             );
             // this.$router.push('/home')
-            this.login();
+            // this.login();
+            this.resetForm();
+            
           }
           this.isProcessing = false;
         })
@@ -108,7 +110,14 @@ export default {
             this.error = err.response.data;
           }
         });
-    }
+    },
+    resetForm(){
+         this.form.first_name = '';
+         this.form.last_name= '';
+         this.form.email= '';
+         this.form.password= '';
+         this.form.password_confirmation= '';
+      }
   }
 };
 </script>

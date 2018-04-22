@@ -18,7 +18,7 @@
                 <a href="#modal-close" title="Close" class="modal-close">Close</a>
                 <h3>Edit Education</h3>
                 <form v-on:submit="update(editEducation, editEducation.id, 'edit')">
-                    <input type="hidden" class="form__control" v-model="editEducation.user_id">
+                    <input type="hidden"  class="form__control" v-model="editEducation.user_id">
                     <input type="text" class="form__control" v-model="editEducation.institution_name">
                     <input type="text" class="form__control " v-model="editEducation.degree">
                     <input type="text" class="form__control " v-model="editEducation.course">
@@ -34,11 +34,11 @@
                 <h3>New Education</h3>
                 <form v-on:submit="addItem(newEducation)">
                     <a href="#modal-close2" title="Close" class="modal-close2">Close</a>
-                    <input type="text" class="form__control" v-model="newEducation.institution_name">
-                    <input type="text" class="form__control " v-model="newEducation.degree">
-                    <input type="text" class="form__control " v-model="newEducation.course">
-                    <input type="date" class="form__control" v-model="newEducation.start_date">
-                    <input type="date" class="form__control " v-model="newEducation.end_date">
+                    <input type="text" placeholder="Name of instituition" class="form__control" v-model="newEducation.institution_name">
+                    <input type="text" placeholder="Degree Obtained" class="form__control " v-model="newEducation.degree">
+                    <input type="text" placeholder="Course of Study" class="form__control " v-model="newEducation.course">
+                    <input type="date" placeholder="start period" class="form__control" v-model="newEducation.start_date">
+                    <input type="date" placeholder="end period" class="form__control " v-model="newEducation.end_date">
                     <button class="btn">Save</button>
                 </form>
             </div>

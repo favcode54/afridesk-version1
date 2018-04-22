@@ -4,7 +4,7 @@
   <div class="panel-footer" v-if="results.length">
    <ul class="list-group">
     <li class="list-group-item" v-for="result in results">
-     {{ result.name }}
+     {{ result.skill }}
     </li>
    </ul>
   </div>

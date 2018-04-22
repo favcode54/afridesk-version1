@@ -2444,7 +2444,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (res.data.registered) {
           __WEBPACK_IMPORTED_MODULE_1__helpers_flash__["a" /* default */].setSuccess("Congratulations! You have now successfully registered.");
           // this.$router.push('/home')
-          _this.login();
+          // this.login();
+          _this.resetForm();
         }
         _this.isProcessing = false;
       }).catch(function (err) {
@@ -2470,6 +2471,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this2.error = err.response.data;
         }
       });
+    },
+    resetForm: function resetForm() {
+      this.form.first_name = '';
+      this.form.last_name = '';
+      this.form.email = '';
+      this.form.password = '';
+      this.form.password_confirmation = '';
     }
   }
 });
@@ -3702,7 +3710,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form__control",
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "Name of instituition" },
                   domProps: { value: _vm.newEducation.institution_name },
                   on: {
                     input: function($event) {
@@ -3728,7 +3736,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form__control ",
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "Degree Obtained" },
                   domProps: { value: _vm.newEducation.degree },
                   on: {
                     input: function($event) {
@@ -3750,7 +3758,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form__control ",
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "Course of Study" },
                   domProps: { value: _vm.newEducation.course },
                   on: {
                     input: function($event) {
@@ -3772,7 +3780,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form__control",
-                  attrs: { type: "date" },
+                  attrs: { type: "date", placeholder: "start period" },
                   domProps: { value: _vm.newEducation.start_date },
                   on: {
                     input: function($event) {
@@ -3798,7 +3806,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form__control ",
-                  attrs: { type: "date" },
+                  attrs: { type: "date", placeholder: "end period" },
                   domProps: { value: _vm.newEducation.end_date },
                   on: {
                     input: function($event) {
@@ -4119,7 +4127,7 @@ var render = function() {
             { staticClass: "list-group" },
             _vm._l(_vm.results, function(result) {
               return _c("li", { staticClass: "list-group-item" }, [
-                _vm._v("\n    " + _vm._s(result.name) + "\n   ")
+                _vm._v("\n    " + _vm._s(result.skill) + "\n   ")
               ])
             })
           )
@@ -4866,7 +4874,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form__control",
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "Company" },
                   domProps: { value: _vm.newExperience.compamy_name },
                   on: {
                     input: function($event) {
@@ -4892,7 +4900,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form__control ",
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "Job Role" },
                   domProps: { value: _vm.newExperience.role_title },
                   on: {
                     input: function($event) {
@@ -4918,7 +4926,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form__control ",
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "City" },
                   domProps: { value: _vm.newExperience.city },
                   on: {
                     input: function($event) {
@@ -4940,7 +4948,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form__control",
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "Country" },
                   domProps: { value: _vm.newExperience.country },
                   on: {
                     input: function($event) {
@@ -4966,7 +4974,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form__control ",
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "Description" },
                   domProps: { value: _vm.newExperience.description },
                   on: {
                     input: function($event) {
@@ -4992,7 +5000,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form__control",
-                  attrs: { type: "date" },
+                  attrs: { type: "date", placeholder: "Start date" },
                   domProps: { value: _vm.newExperience.start_date },
                   on: {
                     input: function($event) {
@@ -5018,7 +5026,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form__control ",
-                  attrs: { type: "date" },
+                  attrs: { type: "date", placeholder: "End date" },
                   domProps: { value: _vm.newExperience.end_date },
                   on: {
                     input: function($event) {

@@ -37,13 +37,13 @@
                 <h3>New experience</h3>
                 <form v-on:submit="addExperience(newExperience)">
                     <a href="#modal-close4" title="Close" class="modal-close4">Close</a>
-                    <input type="text" class="form__control" v-model="newExperience.compamy_name">
-                    <input type="text" class="form__control " v-model="newExperience.role_title">
-                    <input type="text" class="form__control " v-model="newExperience.city">
-                     <input type="text" class="form__control" v-model="newExperience.country">
-                    <input type="text" class="form__control " v-model="newExperience.description">
-                    <input type="date" class="form__control" v-model="newExperience.start_date">
-                    <input type="date" class="form__control " v-model="newExperience.end_date">
+                    <input type="text" placeholder="Company" class="form__control" v-model="newExperience.compamy_name">
+                    <input type="text" placeholder="Job Role" class="form__control " v-model="newExperience.role_title">
+                    <input type="text" placeholder="City" class="form__control " v-model="newExperience.city">
+                     <input type="text" placeholder="Country" class="form__control" v-model="newExperience.country">
+                    <input type="text" placeholder="Description" class="form__control " v-model="newExperience.description">
+                    <input type="date" placeholder="Start date" class="form__control" v-model="newExperience.start_date">
+                    <input type="date" placeholder="End date" class="form__control " v-model="newExperience.end_date">
                     <button class="btn">Save</button>
                 </form>
             </div>
